@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\train;
+use App\Models\Train as ModelsTrain;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
     public function index()
     {
-        return view('pages.home');
+        $trains = ModelsTrain::all();
+        // return view('pages.home');
+        dd($trains);
     }
 }
