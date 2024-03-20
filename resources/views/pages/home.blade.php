@@ -21,7 +21,9 @@
               <li class="list-group-item">Departure at {{ $train->departure_time }} - Arrival at {{ $train->arrival_time }}</li>
               <li class="list-group-item">Train n: {{ $train->train_code }}</li>
               <li class="list-group-item">{{ $train->coaches }} coaches</li>
-              @if(!$train->on_time)
+              @if($train->deleted)
+              <li class="list-group-item">DELETED</li>
+              @elseif(!$train->on_time)
               <li class="list-group-item">Delay</li>
               @endif
             </ul>
