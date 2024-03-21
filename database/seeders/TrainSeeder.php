@@ -96,7 +96,7 @@ class TrainSeeder extends Seeder
             $train->arrival_time = $faker->dateTimeBetween('-1 week');
             $train->train_code = '';
             for ($i = 0; $i < 10; $i++) {
-                $train->train_code . $faker->randomLetter();
+                $train->train_code .= $faker->randomLetter();
             }
             $train->coaches = $faker->randomDigit();
             $train->on_time = $faker->numberBetween(0, 1);
