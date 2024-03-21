@@ -87,22 +87,45 @@ class TrainSeeder extends Seeder
         // }
 
         // seeder whith data from Faker 
-        for ($a = 0; $a < 3; $a++) {
-            $train = new Train;
-            $train->company = $faker->company();
-            $train->departure_station = $faker->city();
-            $train->arrival_station = $faker->city();
-            $train->departure_time = $faker->dateTimeBetween('-1 week');
-            $train->arrival_time = $faker->dateTimeBetween('-1 week');
-            $train->train_code = '';
-            for ($i = 0; $i < 10; $i++) {
-                $train->train_code .= $faker->randomLetter();
+        //     for ($a = 0; $a < 3; $a++) {
+        //         $train = new Train;
+        //         $train->company = $faker->company();
+        //         $train->departure_station = $faker->city();
+        //         $train->arrival_station = $faker->city();
+        //         $train->departure_time = $faker->dateTimeBetween('-1 week');
+        //         $train->arrival_time = $faker->dateTimeBetween('-1 week');
+        //         $train->train_code = '';
+        //         for ($i = 0; $i < 10; $i++) {
+        //             $train->train_code .= $faker->randomLetter();
+        //         }
+        //         $train->coaches = $faker->randomDigit();
+        //         $train->on_time = $faker->numberBetween(0, 1);
+        //         $train->deleted = $faker->numberBetween(0, 1);
+        //         $train->restaurant_wagon = $faker->numberBetween(0, 1);
+        //         $train->save();
+        //     }
+        // }
+
+        // seeder with data from a csv file
+        $file = fopen(__DIR__ . '/../csv/trains.csv', 'r');
+        $is_first_line = true;
+        while (!feof($file)) {
+            $data = fgetcsv($file);
+            if (!$is_first_line) {
+                $train = new Train;
+                $train->company = $data[0];
+                $train->departure_station = $data[1];
+                $train->arrival_station = $data[2];
+                $train->departure_time = $data[3];
+                $train->arrival_time = $data[4];
+                $train->train_code = $data[5];
+                $train->coaches = $data[6];
+                $train->on_time = $data[7];
+                $train->deleted = $data[8];
+                $train->restaurant_wagon = $data[9];
+                $train->save();
             }
-            $train->coaches = $faker->randomDigit();
-            $train->on_time = $faker->numberBetween(0, 1);
-            $train->deleted = $faker->numberBetween(0, 1);
-            $train->restaurant_wagon = $faker->numberBetween(0, 1);
-            $train->save();
+            $is_first_line = false;
         }
     }
 }
