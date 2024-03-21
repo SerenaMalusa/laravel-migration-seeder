@@ -15,16 +15,61 @@ class TrainSeeder extends Seeder
      */
     public function run()
     {
-        $train = new Train;
-        $train->departure_station = 'Roma';
-        $train->arrival_station = 'Milano';
-        $train->departure_time = date('Y-m-d');
-        $train->arrival_time = date('Y-m-d');
-        $train->train_code = 'asd456tre4';
-        $train->coaches = 5;
-        $train->on_time = 0;
-        $train->deleted = 0;
-        $train->restaurant_wagon = 1;
-        $train->save();
+        $records = [
+            [
+                'company' => 'Italo',
+                'departure_station' => 'Milano',
+                'arrival_station' => 'Roma',
+                'departure_time' => date('Y-m-d'),
+                'arrival_time' => date('Y-m-d'),
+                'train_code' => 'asd456tre4',
+                'coaches' => 5,
+                'on_time' => 0,
+                'deleted' => 1,
+                'restaurant_wagon' => 1
+            ],
+            [
+                'company' => 'Italo',
+                'departure_station' => 'Milano',
+                'arrival_station' => 'Roma',
+                'departure_time' => date('Y-m-d'),
+                'arrival_time' => date('Y-m-d'),
+                'train_code' => 'asd456tre4',
+                'coaches' => 5,
+                'on_time' => 0,
+                'deleted' => 1,
+                'restaurant_wagon' => 1
+            ],
+            [
+                'company' => 'Italo',
+                'departure_station' => 'Milano',
+                'arrival_station' => 'Roma',
+                'departure_time' => date('Y-m-d'),
+                'arrival_time' => date('Y-m-d'),
+                'train_code' => 'asd456tre4',
+                'coaches' => 5,
+                'on_time' => 0,
+                'deleted' => 1,
+                'restaurant_wagon' => 1
+            ],
+            [
+                'company' => 'Italo',
+                'departure_station' => 'Milano',
+                'arrival_station' => 'Roma',
+                'departure_time' => date('Y-m-d'),
+                'arrival_time' => date('Y-m-d'),
+                'train_code' => 'asd456tre4',
+                'coaches' => 5,
+                'on_time' => 0,
+                'deleted' => 1,
+                'restaurant_wagon' => 1
+            ]
+        ];
+
+        foreach ($records as $record) {
+            $train = new Train;
+            $train->fill($record);
+            $train->save();
+        }
     }
 }
